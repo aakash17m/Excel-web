@@ -1,0 +1,251 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  font-size: 14;
+}
+
+* {
+  box-sizing: border-box;
+}
+.container {
+  height: 100vh;
+}
+
+.title-bar {
+  height: 5vh;
+  background-color: #107c41;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.menu-bar {
+  height: 5vh;
+  background-color: #107c41;
+  display: flex;
+}
+.menu-item {
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+.menu-item.selected {
+  background-color: #fff;
+  color: #107c41;
+}
+.menu-item:hover {
+  background-color: #074825;
+  cursor: pointer;
+}
+.menu-item.selected:hover {
+  background-color: #fff;
+  cursor: default;
+}
+
+.menu-icon-bar {
+  height: 6vh;
+  display: flex;
+  align-items: center;
+  background-color: rgb(240, 239, 239);
+}
+.menu-icon {
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.menu-icon:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+.menu-icon.selected {
+  background-color: lightgray;
+}
+
+.selector {
+  height: 30px;
+  font-size: 14px;
+}
+.font-family-selector {
+  width: 150px;
+}
+/* .font-size-selector{
+
+} */
+.selector option {
+  font-size: 14px;
+}
+
+.formula-bar {
+  height: 6vh;
+  display: flex;
+  align-items: center;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+  background-color: rgb(240, 239, 239);
+}
+
+.formula-editor {
+  height: 70%;
+  border: 1px solid lightgray;
+  background-color: #fff;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+  align-items: center;
+  display: flex;
+}
+
+.selected-cell {
+  width: 120px;
+}
+
+.function-sign {
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formula-input {
+  width: calc(100vw - 160px);
+  outline-color: #107c41;
+}
+
+.data-container {
+  height: 74vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.select-all {
+  width: 30px;
+  height: 30px;
+  border: 1px solid lightgray;
+}
+
+.column-name-container {
+  width: calc(100vw - 30px);
+  height: 30px;
+  border: 1px solid lightgray;
+  display: flex;
+  overflow: hidden;
+}
+
+.column-name {
+  min-width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid lightgray;
+  font-weight: bold;
+}
+
+.row-name-container {
+  width: 30px;
+  height: calc(74vh - 30px);
+  border: 1px solid lightgray;
+  overflow: hidden;
+}
+
+.row-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+  min-height: 25px;
+}
+
+.input-cell-container {
+  width: calc(100vw - 30px);
+  height: calc(74vh - 30px);
+  border: 1px solid lightgray;
+  overflow: scroll;
+}
+.cell-row {
+  display: flex;
+}
+
+.input-cell {
+  min-width: 100px;
+  min-height: 25px;
+  border-bottom: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  outline-color: #107c41;
+}
+
+.input-cell.selected {
+  border: 2px solid #107c41;
+}
+
+.input-cell.top-cell-selected {
+  border-top: none;
+}
+
+.input-cell.bottom-cell-selected {
+  border-bottom: 1px solid lightgray;
+}
+
+.input-cell.right-cell-selected {
+  border-right: 1px solid lightgray;
+}
+
+.input-cell.left-cell-selected {
+  border-left: none;
+}
+
+.sheet-bar {
+  height: 4vh;
+  display: flex;
+  align-items: center;
+}
+
+.scroller {
+  width: 70px;
+}
+
+.icon-left-scroll,
+.icon-right-scroll {
+  font-size: 25px;
+}
+
+.icon-left-scroll:hover,
+.icon-right-scroll:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+.icon-add {
+  color: #107c41;
+  width: 40px;
+}
+
+.icon-add:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.sheet-tab-container {
+  border: 1px solid lightgray;
+  width: calc(100vw - 110px);
+}
+
+.sheet-tab {
+  border-bottom: 4px solid #107c41;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  width: 70px;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border-right: 1px solid lightgray;
+}
+
+.sheet-tab {
+  cursor: default;
+}
