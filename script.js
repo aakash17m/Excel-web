@@ -91,13 +91,28 @@ $(document).ready(function () {
                     $(`#row-${rowId}-col-${colId + 1}`).addClass("left-cell-selected");
                 }
             }
-            $(this).addClass("selected");
         }
         else {
             $(".input-cell.selected").removeClass("selected");
-            $(this).addClass("selected");
         }
+        $(this).addClass("selected");
+        changeHeader(this);
     });
+
+    function changeHeader(ele){
+        let [rowId,colId] = getRowCol(ele);
+        let cellInfo = defaultProperties;
+        if(cellData[selectedSheet][rowId] && cellData[selectedSheet][rowId][colId]){
+            cellInfo = cellData[selectedSheet][rowId][colId];
+        }
+        cellInfo["font-weight"] ? $(".icon-bold").addClass("selected") : $(".icon-bold").removeClass("selected");
+        cellInfo["font-style"] ? $(".icon-italic").addClass("selected") : $(".icon-italic").removeClass("selected");
+        cellInfo["text-decoretion"] ? $(".icon-underline").addClass("selected") : $(".icon-underline").removeClass("selected");
+        
+        let alignment = cellInfo["text-align"];
+        $(".align-icon.selected").removeClass("selected");
+        $(".icon-align-" + alignment).addClass("selected");
+    };
 
     $(".input-cell").dblclick(function () {
         $(".input-cell.selected").removeClass("selected");
