@@ -236,10 +236,11 @@ body {
 .sheet-tab-container {
   border: 1px solid lightgray;
   width: calc(100vw - 110px);
+  display: flex;
+
 }
 
 .sheet-tab {
-  border-bottom: 4px solid #107c41;
   padding-left: 10px;
   padding-right: 10px;
   display: flex;
@@ -251,6 +252,19 @@ body {
 }
 
 .sheet-tab {
+  cursor: default;
+}
+
+.sheet-tab.selected{
+  border-bottom: 4px solid #107c41;
+
+}
+.sheet-tab:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+.sheet-tab.selected:hover {
+  background-color: #fff;
   cursor: default;
 }
 

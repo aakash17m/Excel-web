@@ -1,4 +1,3 @@
-const { ObjectId } = require("mongodb");
 
 let defaultProperties = {
     text : "",
@@ -18,6 +17,7 @@ let cellData ={
 
 let selectedSheet = "sheet1";
 let totalSheets = 1;
+let lastlyAddedSheet = 1;
 
 $(document).ready(function () {
     let cellContainer = $(".input-cell-container");
@@ -109,7 +109,7 @@ $(document).ready(function () {
         }
         cellInfo["font-weight"] ? $(".icon-bold").addClass("selected") : $(".icon-bold").removeClass("selected");
         cellInfo["font-style"] ? $(".icon-italic").addClass("selected") : $(".icon-italic").removeClass("selected");
-        cellInfo["text-decoretion"] ? $(".icon-underline").addClass("selected") : $(".icon-underline").removeClass("selected");
+        cellInfo["text-decoration"] ? $(".icon-underline").addClass("selected") : $(".icon-underline").removeClass("selected");
         
         let alignment = cellInfo["text-align"];
         $(".align-icon.selected").removeClass("selected");
@@ -249,7 +249,7 @@ function emptysheet() {
     let sheetInfo = cellData[selectedSheet];
     for(let i of Object.keys(sheetInfo)){
         for(let j of Object.keys(sheetInfo[i])){
-            $(`#row-${i}-col-${j}`).text("");
+            $(`#row-${i}-col-${j}`).text(" ");
             $(`#row-${i}-col-${j}`).css("background-color", "#ffffff");
             $(`#row-${i}-col-${j}`).css("color", "#000000");
             $(`#row-${i}-col-${j}`).css("text-align", "left");
@@ -264,7 +264,7 @@ function emptysheet() {
 
 function loadsheet() {
     let sheetInfo = cellData[selectedSheet];
-    for(let i of Object.keys(sheetInfo)){
+    for(let i of Object.keys(sheetInfo)){        
         for(let j of Object.keys(sheetInfo[i])){
             let cellInfo = cellData[selectedSheet][i][j];
             $(`#row-${i}-col-${j}`).text(cellInfo["text"]);
@@ -278,4 +278,34 @@ function loadsheet() {
             $(`#row-${i}-col-${j}`).css("font-size", cellInfo["font-size"]);
         }
     }
+}
+
+$(".icon-add").click(function () {
+    emptysheet();
+    $(".sheet-tab.selected").removeClass("selected");
+    let sheetName = "sheet" + (lastlyAddedSheet + 1);
+    cellData[sheetName] = {};
+    totalSheets += 1;
+    lastlyAddedSheet += 1;;
+    selectedSheet = sheetName;
+    $(".sheet-tab-container").append(`<div class="sheet-tab selected">${sheetName}</div>`);
+    $(".sheet-tab.selected").click(function (){
+        if(!$(this).hasClass("selected")){
+            selectSheet(this);
+        }
+    })
+});
+
+$(".sheet-tab").click(function (){
+    if(!$(this).hasClass("selected")){
+        selectSheet(this);
+    }
+})
+
+function selectSheet(ele){
+    $(".sheet-tab.selected").removeClass("selected");
+    $(ele).addClass("selected");
+    emptysheet();
+    selectedSheet = $(ele).text();
+    loadsheet();
 }
