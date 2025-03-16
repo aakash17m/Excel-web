@@ -242,3 +242,8 @@ $(".font-family-selector").change(function(){
 $(".font-size-selector").change(function(){
     updateCell("font-size",$(this).val())
 });
+
+function emptysheet() {
+    let sheetInfo = cellData[selectedSheet];
+    
+}
