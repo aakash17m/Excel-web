@@ -303,7 +303,7 @@ $(".sheet-tab").click(function (){
 })
 
 function selectSheet(ele){
-    $(".sheet-tab.selected").removeClass("selected");
+   $(".sheet-tab.selected").removeClass("selected");
     $(ele).addClass("selected");
     emptysheet();
     selectedSheet = $(ele).text();
