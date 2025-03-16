@@ -73,6 +73,7 @@ body {
 }
 .font-family-selector {
   width: 150px;
+  font-family: 'Arial';
 }
 /* .font-size-selector{
 
@@ -176,6 +177,9 @@ body {
   border-bottom: 1px solid lightgray;
   border-right: 1px solid lightgray;
   outline-color: #107c41;
+  font-family: 'Arial';
+  font-size: 14px;
+
 }
 
 .input-cell.selected {
@@ -248,4 +252,20 @@ body {
 
 .sheet-tab {
   cursor: default;
+}
+
+.icon-color-fill, .icon-color-text{
+  position: relative;
+
+}
+.color-picker{
+  position: absolute;
+  width: 26px;
+  height: 12px;
+  border: none;
+  padding: 0;
+  top: 30px;
+  /* top: 26px; */
+  left: 9px;
+  cursor: pointer;
 }
