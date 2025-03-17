@@ -9,6 +9,7 @@ body {
 }
 .container {
   height: 100vh;
+  position: relative;
 }
 
 .title-bar {
@@ -73,7 +74,7 @@ body {
 }
 .font-family-selector {
   width: 150px;
-  font-family: 'Arial';
+  font-family: "Arial";
 }
 /* .font-size-selector{
 
@@ -177,9 +178,8 @@ body {
   border-bottom: 1px solid lightgray;
   border-right: 1px solid lightgray;
   outline-color: #107c41;
-  font-family: 'Arial';
+  font-family: "Arial";
   font-size: 14px;
-
 }
 
 .input-cell.selected {
@@ -237,7 +237,6 @@ body {
   border: 1px solid lightgray;
   width: calc(100vw - 110px);
   display: flex;
-
 }
 
 .sheet-tab {
@@ -255,9 +254,8 @@ body {
   cursor: default;
 }
 
-.sheet-tab.selected{
+.sheet-tab.selected {
   border-bottom: 4px solid #107c41;
-
 }
 .sheet-tab:hover {
   background-color: lightgray;
@@ -268,11 +266,11 @@ body {
   cursor: default;
 }
 
-.icon-color-fill, .icon-color-text{
+.icon-color-fill,
+.icon-color-text {
   position: relative;
-
 }
-.color-picker{
+.color-picker {
   position: absolute;
   width: 26px;
   height: 12px;
@@ -282,4 +280,81 @@ body {
   /* top: 26px; */
   left: 9px;
   cursor: pointer;
+}
+
+.sheet-options-modal {
+  position: absolute;
+  bottom: 4vh;
+  background-color: #fff;
+  height: 60px;
+  width: 70px;
+  box-shadow: 0 0 3px 1px lightgray;
+  border-radius: 10px;
+}
+
+.sheet-rename,.sheet-delete {
+  height: 30px;
+  font-weight: 500;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sheet-delete:hover, .sheet-rename:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+.sheet-rename-modal{
+  position: absolute;
+  height: 180px;
+  width: 300px;
+  top: calc(100vh/2 - 90px);
+  left: calc(100vw/2 - 150px);
+  background-color: #fff;
+  text-align: center;
+  box-shadow:  0 0 3px 2px lightgray;
+  border-radius: 10px;
+}
+.action-buttons{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.modal-title{
+  font-size: 20px;
+
+}
+
+.new-sheet-name{
+  height: 24px;
+  font-size: 16px;
+  outline-color: #107c41;
+}
+
+.submit-button{
+  cursor: pointer;
+  background-color: #107c41;
+  color: #fff;
+  padding: 8px;
+  border-radius: 5px;
+}
+.submit-button:hover{
+  background-color: #074825;
+  font-weight: bold;
+}
+
+.cancel-button{
+  cursor: pointer;
+  background-color: lightgray;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.cancel-button:hover{
+  background-color: #a8a5a5;
+  font-weight: bold;
 }

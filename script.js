@@ -289,18 +289,60 @@ $(".icon-add").click(function () {
     lastlyAddedSheet += 1;;
     selectedSheet = sheetName;
     $(".sheet-tab-container").append(`<div class="sheet-tab selected">${sheetName}</div>`);
+    addSheetEvents();
+});
+
+function addSheetEvents() {
     $(".sheet-tab.selected").click(function () {
         if (!$(this).hasClass("selected")) {
             selectSheet(this);
         }
     })
+    $(".sheet-tab.selected").contextmenu(function (e) {
+        e.preventDefault();
+        $(this).addClass("selected");
+        selectSheet = $(this).text();
+        if($(".sheet-options-modal").length == 0){
+            $(".container").append(`<div class="sheet-options-modal">
+                <div class="sheet-rename">Rename</div>
+                <div class="sheet-delete">Delete</div>
+            </div>`);
+            $(".sheet-rename").click(function () {
+                $(".container").append(`<div class="sheet-rename-modal">
+                                            <h4 class="modal-title">Rename Sheet To:</h4>
+                                            <input type="text" class="new-sheet-name" placeholder="Sheet Name"/>
+                                            <div class="action-buttons">
+                                            <div class="submit-button">Rename</div>
+                                            <div class="cancel-button">Cancel</div>
+                                            </div>
+                                        </div>`);
+                $(".cancel-button").click(function () {
+                    $(".sheet-rename-modal").remove();
+                });
+                $(".submit-button").click(function () {
+                    let newSheetName = $(".new-sheet-name").val();
+                    $(".sheet-tab.selected").text(newSheetName);
+                    cellData[newSheetName] = cellData[selectedSheet];
+                    delete cellData[selectedSheet];
+                    selectSheet = newSheetName;
+                    $(".sheet-rename-modal").remove();
+                });
+            });
+
+            $(".sheet-delete").click(function () {
+                
+            });
+        }
+        
+        $(".sheet-options-modal").css("left", e.pageX + "px");
+    });
+}
+
+$(".container").click(function () {
+    $(".sheet-options-modal").remove();
 });
 
-$(".sheet-tab").click(function () {
-    if (!$(this).hasClass("selected")) {
-        selectSheet(this);
-    }
-})
+addSheetEvents();
 
 function selectSheet(ele) {
     $(".sheet-tab.selected").removeClass("selected");
@@ -309,3 +351,4 @@ function selectSheet(ele) {
     selectedSheet = $(ele).text();
     loadsheet();
 }
+
