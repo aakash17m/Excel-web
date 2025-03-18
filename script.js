@@ -300,8 +300,7 @@ function addSheetEvents() {
     })
     $(".sheet-tab.selected").contextmenu(function (e) {
         e.preventDefault();
-        $(this).addClass("selected");
-        selectedSheet = $(this).text();
+        $selectsheet = $(this);
         if($(".sheet-options-modal").length == 0){
             $(".container").append(`<div class="sheet-options-modal">
                 <div class="sheet-rename">Rename</div>
@@ -330,15 +329,32 @@ function addSheetEvents() {
                             newCellData[newSheetName] = cellData[key];
                         }
                     }
-                    cellData[newSheetName] = cellData[selectedSheet];
-                    delete cellData[selectedSheet];
+                    cellData = newCellData;
                     selectedSheet = newSheetName;
                     $(".sheet-rename-modal").remove();
                 });
             });
 
             $(".sheet-delete").click(function () {
-                
+                if (Object.keys(cellData).length > 1) {
+                    let currentSheetName = selectedSheet;
+                    let currSheet = $(".sheet-tab.selected");
+                    let currentSheetIndex = Object.keys(cellData).indexOf(selectedSheet);
+                   
+                    if(currentSheetIndex == 0){
+                        $(".sheet-tab.selected").next().click();
+                        // selectedSheet = Object.keys(cellData)[currentSheetIndex + 1];;
+                    }else{
+                        // selectedSheet = Object.keys(cellData)[currentSheetIndex - 1];
+                        $(".sheet-tab.selected").prev().click();
+                    }
+                    // $(".sheet-tab.selected").remove();
+                    delete cellData[currentSheetName];
+                    currSheet.remove();
+                    // console.log(selectedSheet);
+                } else{
+                    alert("Can't delete last sheet");
+                }
             });
         }
         
