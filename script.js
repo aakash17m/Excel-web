@@ -301,7 +301,7 @@ function addSheetEvents() {
     $(".sheet-tab.selected").contextmenu(function (e) {
         e.preventDefault();
         $(this).addClass("selected");
-        selectSheet = $(this).text();
+        selectedSheet = $(this).text();
         if($(".sheet-options-modal").length == 0){
             $(".container").append(`<div class="sheet-options-modal">
                 <div class="sheet-rename">Rename</div>
@@ -322,9 +322,17 @@ function addSheetEvents() {
                 $(".submit-button").click(function () {
                     let newSheetName = $(".new-sheet-name").val();
                     $(".sheet-tab.selected").text(newSheetName);
+                    let newCellData = {};
+                    for(let key in cellData){
+                        if(key != selectedSheet){
+                            newCellData[key] = cellData[key];
+                        }else{
+                            newCellData[newSheetName] = cellData[key];
+                        }
+                    }
                     cellData[newSheetName] = cellData[selectedSheet];
                     delete cellData[selectedSheet];
-                    selectSheet = newSheetName;
+                    selectedSheet = newSheetName;
                     $(".sheet-rename-modal").remove();
                 });
             });
