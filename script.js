@@ -376,3 +376,49 @@ function selectSheet(ele) {
     loadsheet();
 }
 
+let selectedCells = [];
+let cut = false;
+
+function cellCopy(){
+    $(".input-cell.selected").each(function(){
+        selectedCells.push(getRowCol(this));
+    })
+}
+ 
+$(".icon-copy").click(function(){
+    cellCopy();
+    cut = false;
+});
+
+$(".icon-cut").click(function(){
+    cellCopy();
+    cut = true;
+})
+
+$(".icon-paste").click(function(){
+    emptysheet();
+    let [rowId, colId] = getRowCol($(".input-cell.selected")[0]);
+    let rowDist = rowId - selectedCells[0][0];
+    let colDist = colId - selectedCells[0][1];
+    for( let cell of selectedCells){
+        let newRowId = cell[0] + rowDist ;
+        let newColId = cell[1] + colDist ;
+
+        if(!cellData[selectedSheet][newRowId]){
+            cellData[selectedSheet][newRowId] = {};
+        }
+        cellData[selectedSheet][newRowId][newColId] = {...cellData[selectedSheet][cell[0]][cell[1]]};
+        
+        if(cut){
+            delete cellData[selectedSheet][cell[0]][cell[1]]
+            if(Object.keys(cellData[selectedSheet][cell[0]]).length == 0){
+                delete cellData[selectedSheet][cell[0]];
+            }
+        }
+    }
+    if(cut){
+        cut = false;
+        selectedCells = []; 
+    }
+    loadsheet();
+});
